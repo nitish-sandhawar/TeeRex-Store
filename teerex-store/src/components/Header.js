@@ -34,6 +34,7 @@ const Header = () => {
   } = CartState();
 
   return (
+    <div>
     <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
       <Container>
         <Navbar.Brand>
@@ -103,6 +104,28 @@ const Header = () => {
         </Nav>
       </Container>
     </Navbar>
+    <Navbar bg="dark" variant="dark" style={{ height: 80 }} className="mobileSearch">
+    <Container>
+    {useLocation().pathname.split("/")[1] !== "cart" && (
+          <Navbar.Text className="mobile-search">
+            <FormControl
+              style={{ width: "80vw" }}
+              type="search"
+              placeholder="Search a product..."
+              className="m-auto"
+              aria-label="Search"
+              onChange={(e) => {
+                filterDispatch({
+                  type: "FILTER_BY_SEARCH",
+                  payload: e.target.value,
+                });
+              }}
+            />
+          </Navbar.Text>
+        )}
+    </Container>
+    </Navbar>
+    </div>
   );
 };
 
