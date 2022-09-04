@@ -3,6 +3,19 @@ import { Button, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 import { CartState } from "../context/Context";
 
+// Definition of Data Structures used
+/**
+ * @typedef {Object} products - Data on product available to buy
+ *
+ * @property {string} name - The name or title of the product
+ * @property {string} type - The type that the t-shirt belongs to
+ * @property {number} price - The price to buy the product
+ * @property {string} color - The color of the product
+ * @property {string} imageURL - Contains URL for the product image
+ * @property {string} id - Unique ID for the product
+ * @property {string} gender - Gender for t-shirts
+ */
+
 const Cart = () => {
   const {
     state: { cart },

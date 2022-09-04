@@ -11,20 +11,33 @@ import {
 } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { CartState } from "../context/Context";
-// import "./styles.css";
+import "./styles.css";
+
+// Definition of Data Structures used
+/**
+ * @typedef {Object} products - Data on product available to buy
+ *
+ * @property {string} name - The name or title of the product
+ * @property {string} type - The type that the t-shirt belongs to
+ * @property {number} price - The price to buy the product
+ * @property {string} color - The color of the product
+ * @property {string} imageURL - Contains URL for the product image
+ * @property {string} id - Unique ID for the product
+ * @property {string} gender - Gender for t-shirts
+ */
 
 const Header = () => {
   const {
     state: { cart },
     dispatch,
-    productDispatch,
+    filterDispatch,
   } = CartState();
 
   return (
     <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
       <Container>
         <Navbar.Brand>
-          <Link to="/">Shopping Cart</Link>
+          <Link to="/"><h3>TeeRex Store</h3></Link>
         </Navbar.Brand>
         {useLocation().pathname.split("/")[1] !== "cart" && (
           <Navbar.Text className="search">
@@ -35,7 +48,7 @@ const Header = () => {
               className="m-auto"
               aria-label="Search"
               onChange={(e) => {
-                productDispatch({
+                filterDispatch({
                   type: "FILTER_BY_SEARCH",
                   payload: e.target.value,
                 });
@@ -47,7 +60,7 @@ const Header = () => {
           <Dropdown alignRight>
             <Dropdown.Toggle variant="success">
               <FaShoppingCart color="white" fontSize="25px" />
-              <Badge>{cart.length}</Badge>
+              <Badge bg="success">{cart.length}</Badge>
             </Dropdown.Toggle>
 
             <Dropdown.Menu style={{ minWidth: 370 }}>

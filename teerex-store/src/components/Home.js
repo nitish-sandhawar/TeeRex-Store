@@ -4,14 +4,47 @@ import Filters from './Filters';
 import SingleProduct from './SingleProduct';
 import "./styles.css"
 
+// Definition of Data Structures used
+/**
+ * @typedef {Object} products - Data on product available to buy
+ *
+ * @property {string} name - The name or title of the product
+ * @property {string} type - The type that the t-shirt belongs to
+ * @property {number} price - The price to buy the product
+ * @property {string} color - The color of the product
+ * @property {string} imageURL - Contains URL for the product image
+ * @property {string} id - Unique ID for the product
+ * @property {string} gender - Gender for t-shirts
+ */
+
+/**
+ * @typedef {Object} filterState -  - filter object by useContext
+ *
+ * @property {array} byColor - Array of colors for filtering
+ * @property {array} byGender - Array of Gender for filtering
+ * @property {string} byPrice - price range value in form of string
+ * @property {array} byType - Array of types of t-shirt for filtering
+ * @property {string} searchQuery - query string
+ */
+
 const Home = () => {
     const {
             state:{products},
-            productState: { byColor, byGender, byPrice, byType, searchQuery }
+            filterState: { byColor, byGender, byPrice, byType, searchQuery }
           } = CartState();
-    console.log(products)
 
 
+    /**
+ * Component to display the product filtered and unfiltered both
+ *
+ * @param { } products
+ *    Takes product list directly from context
+ * 
+ * @returns { Array.<Product> }
+ *   returns sorted products if filters are applied otherwise whole products
+ *
+ *
+ */
     const transformProducts = () => {
       let sortedProducts = products;
 

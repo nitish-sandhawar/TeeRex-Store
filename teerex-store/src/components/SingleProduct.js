@@ -1,6 +1,20 @@
 import { Card, Button } from "react-bootstrap";
 import { CartState } from "../context/Context";
 
+
+// Definition of Data Structures used
+/**
+ * @typedef {Object} products - Data on product available to buy
+ *
+ * @property {string} name - The name or title of the product
+ * @property {string} type - The type that the t-shirt belongs to
+ * @property {number} price - The price to buy the product
+ * @property {string} color - The color of the product
+ * @property {string} imageURL - Contains URL for the product image
+ * @property {string} id - Unique ID for the product
+ * @property {string} gender - Gender for t-shirts
+ */
+
 const SingleProduct = ({ prod }) => {
   const {
     state: { cart },
@@ -15,11 +29,6 @@ const SingleProduct = ({ prod }) => {
           <Card.Title>{prod.name}</Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
             <span>₹ {prod.price}</span>
-            {/* {prod.fastDelivery ? (
-              <div>Fast Delivery</div>
-            ) : (
-              <div>4 days delivery</div>
-            )} */}
           </Card.Subtitle>
           {cart.some((p) => p.id === prod.id) ? (
             <Button

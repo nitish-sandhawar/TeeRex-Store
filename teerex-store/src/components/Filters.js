@@ -1,12 +1,22 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { CartState } from "../context/Context";
-// import Rating from "./Rating";  
+
+// Definition of Data Structures used
+/**
+ * @typedef {Object} filterState -  - filter object by useContext
+ *
+ * @property {array} byColor - Array of colors for filtering
+ * @property {array} byGender - Array of Gender for filtering
+ * @property {string} byPrice - price range value in form of string
+ * @property {array} byType - Array of types of t-shirt for filtering
+ * @property {string} searchQuery - query string
+ */
 
 const Filters = () => {
   const {
-    productDispatch,
-    productState: { byColor, byGender, byPrice, byType },
+    filterDispatch,
+    filterState: { byColor, byGender, byPrice, byType },
   } = CartState();
 
   // make state for rating
@@ -31,7 +41,7 @@ const Filters = () => {
                     type="checkbox"
                     id = {"color"+{index}}
                     onChange={() =>
-                        productDispatch({
+                        filterDispatch({
                         type: "FILTER_BY_COLOR",
                         payload: colorOption,
                         })
@@ -53,7 +63,7 @@ const Filters = () => {
                     type="checkbox"
                     id = {"gender"+{index}}
                     onChange={() =>
-                        productDispatch({
+                        filterDispatch({
                         type: "FILTER_BY_GENDER",
                         payload: genderItem,
                         })
@@ -76,7 +86,7 @@ const Filters = () => {
                     type="checkbox"
                     id = {"price"+{index}}
                     onChange={() =>
-                        productDispatch({
+                        filterDispatch({
                         type: "FILTER_BY_PRICE",
                         payload: priceItem,
                         })
@@ -98,7 +108,7 @@ const Filters = () => {
                     type="checkbox"
                     id = {"type"+{index}}
                     onChange={() =>
-                        productDispatch({
+                        filterDispatch({
                         type: "FILTER_BY_TYPE",
                         payload: types,
                         })
@@ -113,7 +123,7 @@ const Filters = () => {
       <Button
         variant="light"
         onClick={() =>
-          productDispatch({
+          filterDispatch({
             type: "CLEAR_FILTERS",
           })
         }

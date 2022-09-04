@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
-import { cartReducer, productReducer } from "./Reducers";
+import { cartReducer, filterReducer } from "./Reducers";
 
 const baseUrl = "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json";
 
@@ -24,7 +24,7 @@ useEffect(()=>{
     // console.log("initial",state);  //checking productList state variable
 },[])
 
-  const [productState, productDispatch] = useReducer(productReducer, {
+  const [filterState, filterDispatch] = useReducer(filterReducer, {
     byColor: [],
     byGender: [],
     byPrice: "",
@@ -32,10 +32,10 @@ useEffect(()=>{
     searchQuery: "",
   });
 
-  // console.log(productState);
+  // console.log(filterState);
 
   return (
-    <Cart.Provider value={{ state, dispatch, productState, productDispatch }}>
+    <Cart.Provider value={{ state, dispatch, filterState, filterDispatch }}>
       {children}
     </Cart.Provider>
   );

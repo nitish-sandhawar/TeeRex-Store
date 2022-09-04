@@ -1,3 +1,14 @@
+/**
+ * Reducer component to update the state of products
+ * and also updating the cart items
+ * @param { Object.<state> } state
+ *    whole state object with product details
+ *
+ * @param { object.<action> } action
+ *    action object with type and payload to update product and cart state according to type
+ *
+ */
+
 export const cartReducer = (state, action) => {
     switch (action.type) {
       case "GET_DATA":
@@ -20,8 +31,19 @@ export const cartReducer = (state, action) => {
         return state;
     }
   };
+
+  /**
+ * Reducer component to update the state of filters
+ *
+ * @param { Object.<state> } state
+ *    whole filter object with types of filter
+ *
+ * @param { object.<action> } action
+ *    action object with type and payload to update filter state according to type
+ *
+ */
   
-  export const productReducer = (state, action) => {
+  export const filterReducer = (state, action) => {
     switch (action.type) {
       case "FILTER_BY_COLOR":
         // return { ...state, byColor:state.byColor.push(action.payload)};
