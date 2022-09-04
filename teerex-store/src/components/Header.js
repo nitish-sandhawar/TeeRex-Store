@@ -64,7 +64,7 @@ const Header = () => {
               <Badge bg="success">{cart.length}</Badge>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu style={{ minWidth: 370 }}>
+            <Dropdown.Menu style={{ minWidth: 320 }}>
               {cart.length > 0 ? (
                 <>
                   {cart.map((prod) => (
@@ -104,9 +104,10 @@ const Header = () => {
         </Nav>
       </Container>
     </Navbar>
+    {useLocation().pathname.split("/")[1] !== "cart" && (
     <Navbar bg="dark" variant="dark" style={{ height: 80 }} className="mobileSearch">
     <Container>
-    {useLocation().pathname.split("/")[1] !== "cart" && (
+    
           <Navbar.Text className="mobile-search">
             <FormControl
               style={{ width: "80vw" }}
@@ -122,9 +123,9 @@ const Header = () => {
               }}
             />
           </Navbar.Text>
-        )}
     </Container>
     </Navbar>
+    )}
     </div>
   );
 };
